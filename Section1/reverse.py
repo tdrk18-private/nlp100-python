@@ -1,5 +1,5 @@
 import re
-from typing import List
+from typing import List, Dict
 
 
 class Section1:
@@ -26,4 +26,16 @@ class Section1:
         for text in s_list:
             clean_text = re.sub(r"\W", "", text)
             res.append(len(clean_text))
+        return res
+
+    @staticmethod
+    def element_symbol(s: str, one_length_list: List[int]) -> Dict[str, int]:
+        res = {}
+        s_list = s.split(" ")
+        for idx, text in enumerate(s_list):
+            if idx + 1 in one_length_list:
+                key = text[:1].strip()
+            else:
+                key = text[:2].strip()
+            res[key] = idx + 1
         return res
