@@ -9,3 +9,8 @@ def test_reverse():
 def test_extract_odd():
     result = Section1.extract_odd("パタトクカシーー")
     assert result == "パトカー"
+
+
+def test_merge_string():
+    result = Section1.merge_strings("パトカー", "タクシー")
+    assert result == "パタトクカシーー"
