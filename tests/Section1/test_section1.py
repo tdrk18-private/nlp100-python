@@ -1,4 +1,4 @@
-from Section1.reverse import Section1
+from Section1.section1 import Section1
 
 
 def test_reverse():
