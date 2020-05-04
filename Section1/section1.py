@@ -1,6 +1,6 @@
 from enum import Enum
 import re
-from typing import List, Dict
+from typing import List, Dict, Set
 
 
 class NGramType(Enum):
@@ -65,3 +65,15 @@ class Section1:
                 break
             res.append(delimiter.join(s_list[idx:end]))
         return res
+
+    @staticmethod
+    def union(x: List[str], y: List[str]) -> Set[str]:
+        return set(x).union(set(y))
+
+    @staticmethod
+    def intersection(x: List[str], y: List[str]) -> Set[str]:
+        return set(x).intersection(set(y))
+
+    @staticmethod
+    def set_difference(x: List[str], y: List[str]) -> Set[str]:
+        return set(x).difference(set(y))

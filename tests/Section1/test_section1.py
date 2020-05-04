@@ -40,3 +40,20 @@ def test_n_gram():
     w_gram = Section1.n_gram(text, 2, NGramType.WORD)
     assert c_gram == ["Ia", "am", "ma", "an", "nN", "NL", "LP", "Pe", "er"]
     assert w_gram == ["I am", "am an", "an NLPer"]
+
+
+def test_set():
+    text_x = "paraparaparadise"
+    text_y = "paragraph"
+    x = Section1.n_gram(text_x, 2, NGramType.CHAR)
+    y = Section1.n_gram(text_y, 2, NGramType.CHAR)
+    union = Section1.union(x, y)
+    assert union == {"pa", "ar", "ra", "ap", "ad", "di", "is", "se", "ag", "gr", "ph"}
+    intersection = Section1.intersection(x, y)
+    assert intersection == {"pa", "ar", "ra", "ap"}
+    set_difference = Section1.set_difference(x, y)
+    assert set_difference == {"ad", "di", "is", "se"}
+    includes_x = "se" in x
+    includes_y = "se" in y
+    assert includes_x
+    assert not includes_y
