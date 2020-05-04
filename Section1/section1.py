@@ -1,5 +1,11 @@
+from enum import Enum
 import re
 from typing import List, Dict
+
+
+class NGramType(Enum):
+    WORD = 1
+    CHAR = 2
 
 
 class Section1:
@@ -38,4 +44,24 @@ class Section1:
             else:
                 key = text[:2].strip()
             res[key] = idx + 1
+        return res
+
+    @staticmethod
+    def n_gram(s: str, n: int, t: NGramType) -> List[str]:
+        s_list = []
+        delimiter = ""
+
+        if t == NGramType.WORD:
+            s_list = s.split(" ")
+            delimiter = " "
+        elif t == NGramType.CHAR:
+            s_list = list(s.replace(" ", ""))
+            delimiter = ""
+
+        res = []
+        for idx, text in enumerate(s_list):
+            end = idx + n
+            if end > len(s_list):
+                break
+            res.append(delimiter.join(s_list[idx:end]))
         return res

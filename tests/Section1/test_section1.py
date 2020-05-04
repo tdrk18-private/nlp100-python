@@ -1,4 +1,4 @@
-from Section1.section1 import Section1
+from Section1.section1 import Section1, NGramType
 
 
 def test_reverse():
@@ -32,3 +32,11 @@ def test_element_symbol():
         "K": 19, "Al": 13, "Mi": 12, "Ne": 10, "O": 8, "Li": 3, "P": 15,
         "Si": 14, "Ar": 18, "Na": 11, "N": 7, "Cl": 17, "He": 2
     }
+
+
+def test_n_gram():
+    text = "I am an NLPer"
+    c_gram = Section1.n_gram(text, 2, NGramType.CHAR)
+    w_gram = Section1.n_gram(text, 2, NGramType.WORD)
+    assert c_gram == ["Ia", "am", "ma", "an", "nN", "NL", "LP", "Pe", "er"]
+    assert w_gram == ["I am", "am an", "an NLPer"]
