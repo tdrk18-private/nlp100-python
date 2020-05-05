@@ -1,6 +1,6 @@
 from enum import Enum
-import random
-import re
+from random import sample
+from re import sub
 from typing import List, Dict, Set
 
 
@@ -31,7 +31,7 @@ class Section1:
         res: List[int] = []
         s_list = s.split(" ")
         for text in s_list:
-            clean_text = re.sub(r"\W", "", text)
+            clean_text = sub(r"\W", "", text)
             res.append(len(clean_text))
         return res
 
@@ -105,6 +105,6 @@ class Section1:
                 head: str = s[0]
                 tail: str = s[-1]
                 internal: str = s[1:-1]
-                word: str = ''.join(random.sample(internal, len(internal)))
+                word: str = ''.join(sample(internal, len(internal)))
                 res.append(f"{head}{word}{tail}")
         return " ".join(res)
