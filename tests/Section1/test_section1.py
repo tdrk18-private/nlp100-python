@@ -70,3 +70,22 @@ def test_cipher():
     assert encrypt == "iv1Av"
     decrypt = Section1.cipher(encrypt)
     assert decrypt == "re1Ae"
+
+
+def test_typoglycemia():
+    text = "I couldn’t believe that I could actually understand what I was reading : " \
+           "the phenomenal power of the human mind ."
+    result = Section1.typoglycemia(text)
+    result_list = result.split(" ")
+    print(result_list)
+    assert len(result_list) == 21
+    assert result_list[0] == "I"
+    assert result_list[3] == "that"
+    assert result_list[8] == "what"
+    assert result_list[10] == "was"
+    assert result_list[19] == "mind"
+    assert result_list[2][0] == "b" and result_list[2][-1] == "e"
+    assert result_list[5][0] == "c" and result_list[5][-1] == "d"
+    assert result_list[6][0] == "a" and result_list[6][-1] == "y"
+    assert result_list[7][0] == "u" and result_list[7][-1] == "d"
+    assert result_list[18][0] == "h" and result_list[18][-1] == "n"

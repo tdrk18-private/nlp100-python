@@ -1,4 +1,5 @@
 from enum import Enum
+import random
 import re
 from typing import List, Dict, Set
 
@@ -92,3 +93,18 @@ class Section1:
             else:
                 res += s
         return res
+
+    @staticmethod
+    def typoglycemia(x: str) -> str:
+        res = []
+        s_list = x.split(" ")
+        for s in s_list:
+            if len(s) <= 4:
+                res.append(s)
+            else:
+                head = s[0]
+                tail = s[-1]
+                internal = s[1:-1]
+                word = ''.join(random.sample(internal, len(internal)))
+                res.append(f"{head}{word}{tail}")
+        return " ".join(res)
