@@ -81,3 +81,14 @@ class Section1:
     @staticmethod
     def template(x: int, y: str, z: float) -> str:
         return f"{x}時の{y}は{z}"
+
+    @staticmethod
+    def cipher(x: str) -> str:
+        s_list = list(x)
+        res = ""
+        for s in s_list:
+            if s.islower():
+                res += chr(219 - ord(s))
+            else:
+                res += s
+        return res

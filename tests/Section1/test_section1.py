@@ -62,3 +62,11 @@ def test_set():
 def test_template():
     result = Section1.template(12, "気温", 22.4)
     assert result == "12時の気温は22.4"
+
+
+def test_cipher():
+    x = "re1Ae"
+    encrypt = Section1.cipher(x)
+    assert encrypt == "iv1Av"
+    decrypt = Section1.cipher(encrypt)
+    assert decrypt == "re1Ae"
