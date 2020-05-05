@@ -77,3 +77,7 @@ class Section1:
     @staticmethod
     def set_difference(x: List[str], y: List[str]) -> Set[str]:
         return set(x).difference(set(y))
+
+    @staticmethod
+    def template(x: int, y: str, z: float) -> str:
+        return f"{x}時の{y}は{z}"

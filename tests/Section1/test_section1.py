@@ -57,3 +57,8 @@ def test_set():
     includes_y = "se" in y
     assert includes_x
     assert not includes_y
+
+
+def test_template():
+    result = Section1.template(12, "気温", 22.4)
+    assert result == "12時の気温は22.4"
