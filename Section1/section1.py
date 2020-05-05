@@ -20,7 +20,7 @@ class Section1:
 
     @staticmethod
     def merge_strings(s: str, t: str) -> str:
-        res = ""
+        res: str = ""
         for a, b in zip(list(s), list(t)):
             res += a
             res += b
@@ -28,7 +28,7 @@ class Section1:
 
     @staticmethod
     def pi_list(s: str) -> List[int]:
-        res = []
+        res: List[int] = []
         s_list = s.split(" ")
         for text in s_list:
             clean_text = re.sub(r"\W", "", text)
@@ -37,7 +37,7 @@ class Section1:
 
     @staticmethod
     def element_symbol(s: str, one_length_list: List[int]) -> Dict[str, int]:
-        res = {}
+        res: Dict[str, int] = {}
         s_list = s.split(" ")
         for idx, text in enumerate(s_list):
             if idx + 1 in one_length_list:
@@ -49,8 +49,8 @@ class Section1:
 
     @staticmethod
     def n_gram(s: str, n: int, t: NGramType) -> List[str]:
-        s_list = []
-        delimiter = ""
+        s_list: List[str] = []
+        delimiter: str = ""
 
         if t == NGramType.WORD:
             s_list = s.split(" ")
@@ -59,7 +59,7 @@ class Section1:
             s_list = list(s.replace(" ", ""))
             delimiter = ""
 
-        res = []
+        res: List[str] = []
         for idx, text in enumerate(s_list):
             end = idx + n
             if end > len(s_list):
@@ -85,8 +85,8 @@ class Section1:
 
     @staticmethod
     def cipher(x: str) -> str:
-        s_list = list(x)
-        res = ""
+        s_list: List[str] = list(x)
+        res: str = ""
         for s in s_list:
             if s.islower():
                 res += chr(219 - ord(s))
@@ -96,15 +96,15 @@ class Section1:
 
     @staticmethod
     def typoglycemia(x: str) -> str:
-        res = []
-        s_list = x.split(" ")
+        res: List[str] = []
+        s_list: List[str] = x.split(" ")
         for s in s_list:
             if len(s) <= 4:
                 res.append(s)
             else:
-                head = s[0]
-                tail = s[-1]
-                internal = s[1:-1]
-                word = ''.join(random.sample(internal, len(internal)))
+                head: str = s[0]
+                tail: str = s[-1]
+                internal: str = s[1:-1]
+                word: str = ''.join(random.sample(internal, len(internal)))
                 res.append(f"{head}{word}{tail}")
         return " ".join(res)
