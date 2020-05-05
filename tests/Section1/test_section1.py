@@ -1,4 +1,4 @@
-from Section1.section1 import Section1
+from Section1.section1 import Section1, NGramType
 
 
 def test_reverse():
@@ -32,3 +32,60 @@ def test_element_symbol():
         "K": 19, "Al": 13, "Mi": 12, "Ne": 10, "O": 8, "Li": 3, "P": 15,
         "Si": 14, "Ar": 18, "Na": 11, "N": 7, "Cl": 17, "He": 2
     }
+
+
+def test_n_gram():
+    text = "I am an NLPer"
+    c_gram = Section1.n_gram(text, 2, NGramType.CHAR)
+    w_gram = Section1.n_gram(text, 2, NGramType.WORD)
+    assert c_gram == ["Ia", "am", "ma", "an", "nN", "NL", "LP", "Pe", "er"]
+    assert w_gram == ["I am", "am an", "an NLPer"]
+
+
+def test_set():
+    text_x = "paraparaparadise"
+    text_y = "paragraph"
+    x = Section1.n_gram(text_x, 2, NGramType.CHAR)
+    y = Section1.n_gram(text_y, 2, NGramType.CHAR)
+    union = Section1.union(x, y)
+    assert union == {"pa", "ar", "ra", "ap", "ad", "di", "is", "se", "ag", "gr", "ph"}
+    intersection = Section1.intersection(x, y)
+    assert intersection == {"pa", "ar", "ra", "ap"}
+    set_difference = Section1.set_difference(x, y)
+    assert set_difference == {"ad", "di", "is", "se"}
+    includes_x = "se" in x
+    includes_y = "se" in y
+    assert includes_x
+    assert not includes_y
+
+
+def test_template():
+    result = Section1.template(12, "気温", 22.4)
+    assert result == "12時の気温は22.4"
+
+
+def test_cipher():
+    x = "re1Ae"
+    encrypt = Section1.cipher(x)
+    assert encrypt == "iv1Av"
+    decrypt = Section1.cipher(encrypt)
+    assert decrypt == "re1Ae"
+
+
+def test_typoglycemia():
+    text = "I couldn’t believe that I could actually understand what I was reading : " \
+           "the phenomenal power of the human mind ."
+    result = Section1.typoglycemia(text)
+    result_list = result.split(" ")
+    print(result_list)
+    assert len(result_list) == 21
+    assert result_list[0] == "I"
+    assert result_list[3] == "that"
+    assert result_list[8] == "what"
+    assert result_list[10] == "was"
+    assert result_list[19] == "mind"
+    assert result_list[2][0] == "b" and result_list[2][-1] == "e"
+    assert result_list[5][0] == "c" and result_list[5][-1] == "d"
+    assert result_list[6][0] == "a" and result_list[6][-1] == "y"
+    assert result_list[7][0] == "u" and result_list[7][-1] == "d"
+    assert result_list[18][0] == "h" and result_list[18][-1] == "n"
